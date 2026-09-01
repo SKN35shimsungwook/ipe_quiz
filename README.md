@@ -43,6 +43,20 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+## 트러블슈팅
+
+**Streamlit Cloud에 올리면 헬스체크마다 500 에러**
+
+- 원인: `streamlit`(당시 1.61.0) 내장 gzip 미들웨어가 `GZipResponder`를 호출하는데, `starlette`가
+  1.4.0으로 올라가면서 그 호출에 새로 필수가 된 `thread_minimum_size` 인자를 안 넘기고
+  있어서, 배포된 앱이 뜨자마자 헬스체크 요청마다 크래시 났음.
+- 해결: `requirements.txt`에 `starlette<1.4.0`으로 상한 버전 고정.
+
+```diff
+  streamlit>=1.57
++ starlette<1.4.0
+```
+
 ---
 
 🤖 이 저장소의 README는 Claude Code와 함께 작성했어요.
