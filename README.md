@@ -1,5 +1,7 @@
 # 💻 정보처리기사 핵심요약 퀴즈
 
+**🔗 바로 실행해 보기:** https://ipequiz-l5uazc8et59tsvbvsmdf8y.streamlit.app
+
 **정보처리기사 필기시험** 핵심 요약 문제를 풀면서 공부하는 Streamlit 퀴즈 앱이에요.
 소프트웨어 설계·개발, 데이터베이스, 프로그래밍 언어, 정보시스템 구축 등 과목별 문제를
 SQLite DB로 관리해요.
