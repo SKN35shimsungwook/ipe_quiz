@@ -2,9 +2,8 @@
 
 **🔗 바로 실행해 보기:** https://ipequiz-l5uazc8et59tsvbvsmdf8y.streamlit.app
 
-**정보처리기사 필기시험** 핵심 요약 문제를 풀면서 공부하는 Streamlit 퀴즈 앱이에요.
-소프트웨어 설계·개발, 데이터베이스, 프로그래밍 언어, 정보시스템 구축 등 과목별 문제를
-SQLite DB로 관리해요.
+**정보처리기사 필기**를 준비하면서, 핵심 요약을 문제로 풀면서 외우려고 만든 Streamlit 퀴즈 앱입니다.
+소프트웨어 설계·개발, 데이터베이스, 프로그래밍 언어, 정보시스템 구축 등 과목별 문제를 SQLite DB로 관리합니다.
 
 ## 기능
 
@@ -45,20 +44,14 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## 트러블슈팅
+## 만들면서 겪은 문제
 
-**Streamlit Cloud에 올리면 헬스체크마다 500 에러**
+**Streamlit Cloud에 올리자 헬스체크마다 500 에러가 났습니다**
 
-- 원인: `streamlit`(당시 1.61.0) 내장 gzip 미들웨어가 `GZipResponder`를 호출하는데, `starlette`가
-  1.4.0으로 올라가면서 그 호출에 새로 필수가 된 `thread_minimum_size` 인자를 안 넘기고
-  있어서, 배포된 앱이 뜨자마자 헬스체크 요청마다 크래시 났음.
-- 해결: `requirements.txt`에 `starlette<1.4.0`으로 상한 버전 고정.
+- 원인: `streamlit`(당시 1.61.0)의 gzip 미들웨어가 `GZipResponder`를 부를 때, `starlette` 1.4.0부터 필수가 된 `thread_minimum_size` 인자를 넘기지 않고 있었습니다. 그래서 앱이 뜨자마자 헬스체크 요청마다 죽었습니다.
+- 해결: `requirements.txt`에서 `starlette<1.4.0`으로 버전을 묶었습니다. 내 코드가 아니라 라이브러리끼리의 버전 문제도 배포를 막을 수 있다는 걸 이때 배웠습니다.
 
 ```diff
   streamlit>=1.57
 + starlette<1.4.0
 ```
-
----
-
-🤖 이 저장소의 README는 Claude Code와 함께 작성했어요.
